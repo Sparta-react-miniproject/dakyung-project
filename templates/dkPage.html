@@ -45,21 +45,25 @@
             padding-left: 20px;
         }
 
-        .mypost {
+          .mypost {
             width: 99%;
             margin: 20px 10px 20px 10px;
             box-shadow: 0px 0px 3px 0px black;
             padding: 20px;
-
         }
 
-        .mypost > button {
+        .mybtn button {
             margin-top: 15px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border:0;
+            background-color: #E9ECEF;
+            color: #6c757d;
         }
 
         #likebutton{
             border-radius: 10px;
-            color:black;
+            color:white;
             font-weight: bold;
             height:30px;
             position: relative;
@@ -70,9 +74,8 @@
         }
 
         #comment-list {
-            width: 95%;
-            max-width: 500px;
-            margin: auto;
+            width:100%;
+            margin:10px auto;
             margin-top: 10px;
             margin-bottom: 10px;
         }
@@ -121,19 +124,160 @@
           font-size: 18px;
         }
 
+        #navdk {
+            background-color: #B983FF;
+        }
 
-
+        #blogbutton {
+            font-weight: bold;
+            background-color: #B983FF;
+            border-radius: 5px;
+            margin-left: 15px;
+            position: relative;
+            bottom:5px;
+            height: 30px;
+            line-height: 20px;
+            color: white;
+        }
 
     </style>
 
     <script>
+
+   $(document).ready(function () {
+            set_temp()
+            show_comment()
+            show_like()
+        });
+
+        function set_temp() {
+            $.ajax({
+                type: "GET",
+                url: "http://spartacodingclub.shop/sparta_api/weather/seoul",
+                data: {},
+                success: function (response) {
+                    $('#temp').text(response['temp'])
+                }
+            })
+        }
+
+
         function save_comment() {
 
+            let nickname = $('#name').val()
+            let comment = $('#comment').val()
+
+            $.ajax({
+                type: 'POST',
+                url: '/savecomment1',
+                data: {'nickname_give': nickname, 'comment_give' : comment},
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            })
         }
 
-        function plus_like() {
+        function show_comment() {
+
+            $('#comment-list').empty()
+            $.ajax({
+                type: "GET",
+                url: "/showcomment1",
+                data: {},
+                success: function (response) {
+
+                   /* db에서 직접 받아오는 건 app.py에서 하고 */
+                    let rows = response['comments']
+
+                    /* for문 돌리는건 */
+                    for(let i = 0 ; i < rows.length ; i++){
+
+                        let membernum = rows[i]['membernum']
+                        let name = rows[i]['name']
+                        let comment = rows[i]['comment']
+
+                        let deletenum = $('#deletenum')
+
+
+                        // <p style="display: none">${membernum}</p>
+                        /*
+                        *   <p>${comment}</p>
+                                                <footer class="blockquote-footer">${name}</footer>
+                                                <button type="button" onclick="delete_comment(${membernum})">삭제</button>
+                        * */
+
+                        let html_temp=`
+                                    <div class="card" style="width:100%; height:150px;">
+                                        <div class="card-body" ">
+                                            <blockquote class="blockquote">
+                                                <p style="display: none">${membernum}</p>
+                                                <p>${comment}</p>
+                                                <footer class="blockquote-footer">${name}</footer>
+                                                <button type="button" onclick="delete_comment(${membernum})" style="background-color: #B983FF; border: none">삭제</button>
+                                            </blockquote>
+                                        </div>
+                                    </div>`
+
+
+
+                        $('#comment-list').append(html_temp)
+                    }
+
+
+                }
+            });
+        }
+
+        function delete_comment(membernum){
+
+            $.ajax({
+                type: 'POST',
+                url: '/deletecomment1',
+                data: {'delete_give': membernum },
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            })
 
         }
+
+
+
+
+        //희진님 코드
+
+       function plus_like() {
+            $.ajax({
+                type: "POST",
+                url: "/likes1",
+                data: {},
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            });
+        }
+
+        function show_like() {
+            $.ajax({
+                type: "GET",
+                url: "/likes1",
+                data: {},
+                success: function (response) {
+                    let rows = response['likes']
+                    for (let i = 0; i < rows.length; i++) {
+                        let num = rows[i]['num']
+                        let temp_html= `${num}`
+                        $('#like').text(temp_html)
+
+                    }
+                }
+            });
+        }
+
+
 
 
     </script>
@@ -144,27 +288,32 @@
     <div id="nav">
         <nav class="navbar bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">파워레인저 소개</a>
+                <a class="navbar-brand" href="home" >파워레인저 소개</a>
+            </div>
+        </nav>
+          <nav class="navbar bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="kdPage" >이기동 대원</a>
             </div>
         </nav>
         <nav class="navbar bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">최영진 대원</a>
+                <a class="navbar-brand" href="yjPage" >최영진 대원</a>
             </div>
         </nav>
         <nav class="navbar bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">손강익 대원</a>
+                <a class="navbar-brand" href="kiPage" >손강익 대원</a>
             </div>
         </nav>
         <nav class="navbar bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">홍다경 대원</a>
+                <a class="navbar-brand" href="dkPage" id="navdk">홍다경 대원</a>
             </div>
         </nav>
         <nav class="navbar bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">홍희진 대원</a>
+                <a class="navbar-brand" href="hjPage" >홍희진 대원</a>
             </div>
         </nav>
     </div>
@@ -175,10 +324,13 @@
         </div>
         <div id="introduce" style='line-height:200%'>
             <h1 style="display: inline">홍다경 대원</h1>
-             <div id="likediv" style="display: inline">
-                <span id="like" style="font-size: 30px"> 💜+1 </span>
+            <div id="likediv" style="display: inline">
+                <span style="font-size: 30px"> 💜 +</span><span id="like" style="font-size: 30px"></span>
                 <button type="button" onclick="plus_like()" id="likebutton">좋아요</button>
             </div>
+            <a href="https://warn-code.tistory.com/">
+	            <button id="blogbutton" type="button">블로그</button>
+		    </a>
 
 
             <h3>🔎 MBTI : <span Style="background-color: #FFE1E1; font-size: 25px"> 대담한 통솔자(ENTJ) </span></h3>
@@ -192,13 +344,16 @@
                 역시 개발은 노력한만큼 돌아오는 것 같아요<br/>
                 날마다 개발과 더 찐하게 친해져볼거에요 😍
             </p>
+
         </div>
     </div>
 
 
+
+
     <div id="addtest">
       <br/>
-      <h1> &nbsp; 💜 저의<span style="font-size: 65px; text-decoration: underline">TMI</span>가 궁금하신가요?</h1>
+      <h1 style="background-color : beige "> &nbsp; 👀 저의<span style="font-size: 65px; text-decoration: underline">TMI</span>가 궁금하신가요?</h1>
       <br/>
     </div>
 
@@ -249,23 +404,25 @@
             </div>
     </div>
 
-
+    <h2 style="padding-left: 30px; background-color: #FFE1E1">💜 다경 대원에게 방명록 남기기!</h2>
 
     <div class="mypost">
-
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="name" placeholder="url">
-            <label for="floatingInput">닉네임</label>
+        <div class="input-group flex-nowrap">
+            <span class="input-group-text" id="addon-wrapping">💜</span>
+            <input id="name" type="text" class="form-control" placeholder="작성자" aria-label="Username"
+                   aria-describedby="addon-wrapping">
         </div>
-
         <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" id="comment"
-          style="height: 100px"></textarea>
-            <label for="floatingTextarea2">응원댓글</label>
+                    <textarea class="form-control" placeholder="Leave a comment here" id="comment"
+                              style="height: 100px"></textarea>
+            <label for="floatingTextarea2">댓글</label>
         </div>
-
-        <button onclick="save_comment()" type="button" class="btn btn-outline-secondary">응원 남기기</button>
+        <div class="mybtn">
+            <button id="post" onclick="save_comment()" type="button" style="background-color: white; border: 1px solid black">방명록 남기기</button>
+        </div>
     </div>
+
+
 
     <div class="mycards" id="comment-list">
     </div>

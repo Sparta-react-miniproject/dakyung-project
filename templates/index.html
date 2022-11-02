@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,191 +12,303 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
-
-    <!--og 타이틀 만들기 -->
-
-    <meta property="og:title" content="다궁이 싸이트"/>
-    <meta property="og:description" content="페이지 구경하고 가세유"/>
-    <meta property="og:image" content="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTExMzBfNDcg%2FMDAxNjM4MjcxNDIyNDIy.SH-KdoZ2WuzaXq6rUuJI677SHZPeR4g07hEeZyxaIDEg.y9kCk-TqILRUGb_4wCdT3E9Ww6KAfFY3shVceTiXOgEg.JPEG.s2ulgi92%2FIMG_9708.jpg&type=sc960_832" />
-
-
-
-
-
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap"
+    <link re1="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Nanum+Gothic:wght@400;700&display=swap"
           rel="stylesheet">
+
+
+    <title>기동대 Main</title>
+
     <style>
-        * {
-            font-family: 'Noto Serif KR', serif;
-        }
 
-        .mypic {
-            width: 100%;
-            height: 300px;
-
-            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA4MDVfNTAg%2FMDAxNjU5NjMxNzc2NDg0.cJA59iFkLpXTGm8Zt4uxP0PxzFa8v3Hh_g37IBuXa9Ig.hX4bcFeRaBOIGzXMk');
-            background-position: center 30%;
+        #title {
+            background-image: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('https://pbs.twimg.com/media/DJQAcuLVYAAUc3T.jpg');
             background-size: cover;
-
-            color: white;
-
+            background-position: center;
+            width: 100%;
+            height: 400px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            margin-bottom: 100px;
         }
 
-        .mypost {
-            width: 95%;
-            max-width: 500px;
+        .mytitle {
+            background-color: transparent;
+            width: 100%;
+            color: black;
+            position: absolute;
+            font-size: 20em;
+            font-family: 'Dongle', sans-serif;
+            text-align: center;
+            animation: slide 2s ease-out;
+        }
+
+        .team {
+            width: 1300px;
+            background-position: center;
+            max-height: 600px;
+            font-family: 'Dongle', sans-serif;
+            margin: 40px auto 10px auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h2 {
+            width: 500px;
+            max-height: 100px;
+            display: flex;
+            font-family: 'Dongle', sans-serif;
+            font-size: 4em;
+            background-color: transparent;
+            border-radius: 50px;
+            border: 1px solid black;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 10px;
+        }
+
+        h3 {
+            font-family: 'Dongle', sans-serif;
+            font-size: 2em;
+            padding-left: 30px;
+            margin: 10px 10px;
+        }
+
+        .mycard {
+            width: 1300px;
+            background-color: transparent;
+            background-position: center;
+            margin: 0px auto 20px auto;
+            border-top-style: solid;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 100px;
+        }
+
+        .wrap {
+            max-width: 1200px;
+            width: 100%;
             margin: 20px auto 20px auto;
 
-            box-shadow: 0px 0px 3px 0px black;
-            padding: 20px;
         }
 
-        .mypost > button {
-            margin-top: 15px;
+        .outline {
+            border-left-style: dotted;
+            border-color: darkgray;
         }
 
-        .mycards {
-            width: 95%;
-            max-width: 500px;
-            margin: auto;
+        .card-img-top {
+            height: 220px;
+            border-radius: 20px;
+        <!-- 원은 50 % -->
         }
 
-        .mycards > .card {
-            margin-top: 10px;
-            margin-bottom: 10px;
+        .card-body {
+            position: relative;
         }
+
+        .card-body > button {
+            width: 100px;
+            height: 35px;
+            right: 10px;
+            bottom: 5px;
+            position: absolute;
+        }
+
+        .email {
+            font-size: small;
+        }
+
+        @keyframes slide {
+            from {
+                left: -400px;
+                opacity: 0;
+            }
+            to {
+                left: 0px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes disappear {
+            from {
+                left: 300px;
+                opacity: 1;
+            }
+            to {
+                left: -50px;
+                opacity: 0;
+            }
+        }
+
+
     </style>
     <script>
-
-        $(document).ready(function () {
-            set_temp()
-            show_comment()
-        });
-
-        function set_temp() {
-            $.ajax({
-                type: "GET",
-                url: "http://spartacodingclub.shop/sparta_api/weather/seoul",
-                data: {},
-                success: function (response) {
-                    $('#temp').text(response['temp'])
-                }
-            })
-        }
-
-
-
-        function save_comment() {
-
-            let nickname = $('#name').val()
-            let comment = $('#comment').val()
-
-            $.ajax({
-                type: 'POST',
-                url: '/homework',
-                data: {'nickname_give': nickname, 'comment_give' : comment},
-                success: function (response) {
-                    alert(response['msg'])
-                    window.location.reload()
-                }
-            })
-        }
-
-        function show_comment() {
-
-            $('#comment-list').empty()
-            $.ajax({
-                type: "GET",
-                url: "/homework",
-                data: {},
-                success: function (response) {
-
-                   /* db에서 직접 받아오는 건 app.py에서 하고 */
-                    let rows = response['comments']
-
-                    /* for문 돌리는건 */
-                    for(let i = 0 ; i < rows.length ; i++){
-
-                        let membernum = rows[i]['membernum']
-                        let name = rows[i]['name']
-                        let comment = rows[i]['comment']
-
-                        let deletenum = $('#deletenum')
-
-
-                        let html_temp=`
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <blockquote class="blockquote mb-0">
-                                                <p style="display: none">${membernum}</p>
-                                                <p>${comment}</p>
-                                                <footer class="blockquote-footer">${name}</footer>
-                                                <button type="button" onclick="delete_comment(${membernum})">삭제</button>
-                                            </blockquote>
-                                        </div>
-                                    </div>`
-
-                        $('#comment-list').append(html_temp)
-                    }
-
-
-                }
-            });
-        }
-
-        function delete_comment(membernum){
-
-            $.ajax({
-                type: 'POST',
-                url: '/deletecomment',
-                data: {'delete_give': membernum },
-                success: function (response) {
-                    alert(response['msg'])
-                    window.location.reload()
-                }
-            })
-
-        }
-
-
 
     </script>
 </head>
 <body>
-<div class="mypic">
-    <h1>아이유 팬명록</h1>
-    <p>현재기온: <span id="temp">36</span>도</p>
 
-</div>
-
-
-<div class="mypost">
-    <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="name" placeholder="url">
-        <label for="floatingInput">닉네임</label>
+<div id="title">
+    <div class="mytitle">
+        <strong>8조 기동대</strong>
     </div>
-    <div class="form-floating">
-<textarea class="form-control" placeholder="Leave a comment here" id="comment"
-          style="height: 100px"></textarea>
-        <label for="floatingTextarea2">응원댓글</label>
+</div>
+<div class="team">
+    <h2> 팀소개</h2>
+    <h3> '기동대'는 육군의 기계화 부대나 해군의 기동 함대와 같이 기동력이 뛰어난 부대를 뜻합니다.</br>
+        코딩에 대한 열정만큼은 누구에게 뒤쳐지지않을만큼 빠른 기동대!</br>
+        각자가 가진 강점들을 똘똘 뭉쳐 파워풀한 에너지를 내는 8조 기동대입니다.</br>
+        첫 스타트에 만난 열정을 잃지 않고, 끝까지 가져가는 멤버들이 될거에요 😀
+    </h3>
+    <h2> 우리팀의 목표</h2>
+    <h3> 첫 프로젝트 즐겁게 잘 끝내서 얻은 성취감을 자양분 삼아 쑥쑥 성장하는 팀이 되자!👊 </h3>
+    <h2> 우리팀의 약속</h2>
+
+    <h3> 1. 격려하기 : 질문 시 적극 도와주기! </br>
+        2. 배려하기 : 슬랙 글 읽었을때 이모지 남기기! </br>
+        3. 책임감 가지기 : 과제 기한 맞추려고 노력하기!</br>
+    </h3>
+    <h2>
+        대원들을 소개합니다!
+    </h2>
+</div>
+<div class="mycard">
+    <div class="wrap">
+        <div class="row row-cols-1 row-cols-md-5 g-3">
+            <div class="col">
+                <div class="card border-light mb-3 text-center h-100">
+                    <div class="card-img">
+                        <img src="https://ca.slack-edge.com/T043597JK8V-U045RJEFMSM-68ffb26ac791-512"
+                             class="card-img-top"
+                             alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title"><strong>대 장</strong></h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><h5><strong>이 기 동</strong></h5></li>
+                            <li class="list-group-item">
+                        <span class="email"
+                              style="font-family: 'Dongle', sans-serif; font-family: 'Nanum Gothic', sans-serif;">
+                            📧</br>
+                            dlrlehd7@daum.net
+                        </span>
+                            </li>
+                            <button type="button" onclick="window.open('kdPage');" class="btn text-white"
+                                    style="background-color: deepskyblue;">introduce
+                            </button>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col outline">
+                <div class="card border-light mb-3 text-center h-100">
+                    <div class="card-img">
+                        <img src="https://velog.velcdn.com/images/cmaw/profile/1ffbf87a-1696-4278-b034-4dadd476d82f/image.webp"
+                             class="card-img-top" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title"><strong>대 원</strong></h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><h5><strong>최 영 진</strong></h5></li>
+                            <li class="list-group-item">
+                        <span class="email"
+                              style="font-family: 'Dongle', sans-serif; font-family: 'Nanum Gothic', sans-serif;">
+                            📧</br>
+                            cmaw@naver.com
+                        </span>
+                            </li>
+                            <button type="button" onclick="window.open('yjPage');" class="btn text-white"
+                                    style="background-color: black;">introduce
+                            </button>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col outline">
+                <div class="card border-light mb-3 text-center h-100">
+                    <div class="card-img">
+                        <img src="https://ca.slack-edge.com/T043597JK8V-U046T1Y768K-675b39a15319-512"
+                             class="card-img-top"
+                             alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title"><strong>대 원</strong></h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><h5><strong>손 강 익</strong></h5></li>
+                            <li class="list-group-item">
+                        <span class="email"
+                              style="font-family: 'Dongle', sans-serif; font-family: 'Nanum Gothic', sans-serif;">
+                            📧</br>
+                            rkddlr9422@gmail.com
+                        </span>
+                            </li>
+                            <button type="button" onclick="window.open('kiPage');" class="btn text-white"
+                                    style="background-color: green;">introduce
+                            </button>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col outline">
+                <div class="card border-light mb-3 text-center h-100">
+                    <div class="card-img">
+                        <img src="https://ca.slack-edge.com/T043597JK8V-U046QT0TJUU-f1ed149d22f3-512"
+                             class="card-img-top"
+                             alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title"><strong>대 원</strong></h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><h5><strong>홍 희 진</strong></h5></li>
+                            <li class="list-group-item">
+                        <span class="email"
+                              style="font-family: 'Dongle', sans-serif; font-family: 'Nanum Gothic', sans-serif;">
+                            📧</br>
+                            panda4859@gmail.com
+                        </span>
+                            </li>
+                            <button type="button" onclick="window.open('hjPage');" class="btn text-white"
+                                    style="background-color: #FEDB39;">introduce
+                            </button>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col outline">
+                <div class="card border-light mb-3 text-center h-100">
+                    <div class="card-img">
+                        <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FTaBkx%2FbtrP5Df1YjK%2FdVeTA98LuzsMydxJMi0qRk%2Fimg.png"
+                             class="card-img-top" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title"><strong>대 원</strong></h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><h5><strong>홍 다 경</strong></h5></li>
+                            <li class="list-group-item">
+                        <span class="email"
+                              style="font-family: 'Dongle', sans-serif; font-family: 'Nanum Gothic', sans-serif;">
+                            📧</br>
+                            hdkpp89@gmail.com
+                        </span>
+                            </li>
+                            <button type="button" onclick="window.open('dkPage');" class="btn text-white"
+                                    style="background-color: #8D72E1;">introduce
+                            </button>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <button onclick="save_comment()" type="button" class="btn btn-dark">응원 남기기</button>
 </div>
-
-<div class="mycards" id="comment-list">
-</div>
-
-
-
-<button type="button" onclick="window.location.href='/study'">페이지이동 테스트중</button>
-
-
-<a class="navbar-brand" href="test12">파워레인저 소개</a>
-
-
 </body>
+
+
 </html>
