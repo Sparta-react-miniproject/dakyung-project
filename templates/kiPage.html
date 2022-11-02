@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+    <title> Power Rangers</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+
+        #profile {
+            display: flex;
+            flex-direction: row;
+            margin: 10px;
+            border-radius: 10px;
+            background-color:#1DDB16;
+        }
+
+        #image > img {
+            width: 95%;
+            max-width: 300px;
+            border-radius: 10px;
+            margin: 30px
+        }
+
+        #introduce {
+            border: 1px solid black;
+            margin: 30px;
+            width: 80%;
+            background-color: white;
+            padding-top: 30px;
+            padding-left: 20px;
+        }
+
+        .mypost {
+            width: 99%;
+            margin: 20px 10px 20px 10px;
+            box-shadow: 0px 0px 3px 0px black;
+            padding: 20px;
+        }
+
+        .mybtn button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: 0;
+            background-color: #E9ECEF;
+            color: #6c757d;
+        }
+
+        #likebutton {
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            height: 30px;
+            position: relative;
+            bottom: 5px;
+            left: 10px;
+            background-color: #1DDB16;
+            line-height: 20px;
+        }
+
+        #comment-list {
+            width: 100%;
+            margin: 10px auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        #comment-list > .card {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        #nav {
+            display: flex;
+            flex-direction: row;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            background-color: #1DDB16;
+        }
+
+        .navbar-brand {
+            color: black;
+        }
+
+        .container1 {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+            padding: 10px;
+        }
+
+        .card {
+            width: 400px;
+            margin: 20px;
+            height: 300px;
+            border: 1px solid black;
+        }
+
+        .card-title {
+            color: black;
+            font-size: 23px;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .card-text {
+            font-size: 18px;
+        }
+
+        #navdk {
+            background-color: #1DDB16;
+        }
+
+        #blogbutton {
+            font-weight: bold;
+            background-color:#1DDB16;
+            border-radius: 5px;
+            margin-left: 15px;
+            position: relative;
+            bottom: 5px;
+            height: 30px;
+            line-height: 20px;
+            color: white;
+        }
+
+    </style>
+
+    <script>
+
+        $(document).ready(function () {
+            set_temp()
+            show_comment()
+            show_like()
+        });
+
+        function set_temp() {
+            $.ajax({
+                type: "GET",
+                url: "http://spartacodingclub.shop/sparta_api/weather/seoul",
+                data: {},
+                success: function (response) {
+                    $('#temp').text(response['temp'])
+                }
+            })
+        }
+
+
+        function save_comment() {
+
+            let nickname = $('#name').val()
+            let comment = $('#comment').val()
+
+            $.ajax({
+                type: 'POST',
+                url: '/savecomment2',
+                data: {'nickname_give': nickname, 'comment_give': comment},
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            })
+        }
+
+        function show_comment() {
+
+            $('#comment-list').empty()
+            $.ajax({
+                type: "GET",
+                url: "/showcomment2",
+                data: {},
+                success: function (response) {
+
+                    /* db에서 직접 받아오는 건 app.py에서 하고 */
+                    let rows = response['comments']
+
+                    /* for문 돌리는건 */
+                    for (let i = 0; i < rows.length; i++) {
+
+                        let membernum = rows[i]['membernum']
+                        let name = rows[i]['name']
+                        let comment = rows[i]['comment']
+
+                        let deletenum = $('#deletenum')
+
+
+                        // <p style="display: none">${membernum}</p>
+                        /*
+                        *   <p>${comment}</p>
+                                                <footer class="blockquote-footer">${name}</footer>
+                                                <button type="button" onclick="delete_comment(${membernum})">삭제</button>
+                        * */
+
+                        let html_temp = `
+                                    <div class="card" style="width:100%; height:150px;">
+                                        <div class="card-body" ">
+                                            <blockquote class="blockquote">
+                                                <p style="display: none">${membernum}</p>
+                                                <p>${comment}</p>
+                                                <footer class="blockquote-footer">${name}</footer>
+                                                <button type="button" onclick="delete_comment(${membernum})" style="background-color: #1DDB16; border: none">삭제</button>
+                                            </blockquote>
+                                        </div>
+                                    </div>`
+
+
+                        $('#comment-list').append(html_temp)
+                    }
+
+
+                }
+            });
+        }
+
+        function delete_comment(membernum) {
+
+            $.ajax({
+                type: 'POST',
+                url: '/deletecomment2',
+                data: {'delete_give': membernum},
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            })
+
+        }
+
+
+        //희진님 코드
+
+        function plus_like() {
+            $.ajax({
+                type: "POST",
+                url: "/likes2",
+                data: {},
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            });
+        }
+
+        function show_like() {
+            $.ajax({
+                type: "GET",
+                url: "/likes2",
+                data: {},
+                success: function (response) {
+                    let rows = response['likes']
+                    for (let i = 0; i < rows.length; i++) {
+                        let num = rows[i]['num']
+                        let temp_html = `${num}`
+                        $('#like').text(temp_html)
+
+                    }
+                }
+            });
+        }
+
+
+    </script>
+</head>
+
+<body>
+
+<div id="nav">
+    <nav class="navbar bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="home">파워레인저 소개</a>
+        </div>
+    </nav>
+    <nav class="navbar bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="kdPage" >이기동 대원</a>
+            </div>
+    </nav>
+    <nav class="navbar bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="yjPage">최영진 대원</a>
+        </div>
+    </nav>
+    <nav class="navbar bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="kiPage" id="navdk">손강익 대원</a>
+        </div>
+    </nav>
+    <nav class="navbar bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="dkPage" >홍다경 대원</a>
+        </div>
+    </nav>
+    <nav class="navbar bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="hjPage">홍희진 대원</a>
+        </div>
+    </nav>
+</div>
+
+<div id="profile">
+    <div id="image">
+        <img src=https://ca.slack-edge.com/T043597JK8V-U046T1Y768K-675b39a15319-512
+        class="img-thumbnail">
+    </div>
+    <div id="introduce" style='line-height:200%'>
+        <h1 style="display: inline">손강익 대원</h1>
+        <div id="likediv" style="display: inline">
+            <span style="font-size: 30px"> 💚 +</span><span id="like" style="font-size: 30px">1</span>
+            <button type="button" onclick="plus_like()" id="likebutton">좋아요</button>
+        </div>
+        <a href="https://rkddlr9422.tistory.com/">
+            <button id="blogbutton" type="button">블로그</button>
+        </a>
+
+
+        <h3>🔎 MBTI : <span Style="background-color: #1DDB16; font-size: 25px"> 자유료운 영혼의 연예인(ESFP)  </span></h3>
+        <h5>🔎 프로젝트 역할: <span Style="background-color: #1DDB16; font-size: 23px"><b> 프론트엔드(메인페이지/팀소개) </b></span></h5>
+        <h5>🔎 프로젝트 소감: 8조 기동대 쵝오~💚</h5>
+
+        <p style="font-size: 16px">
+            😞코딩..아직 너무 어렵게만 느껴진다 <br/>
+            설렘 반 걱정반 한가득 안고 시작했으나 <br/>
+            역시는 역시였다.. ㅎㅎㅎ 너무나도 부족한 나..<br/>
+            그래도 좋은 팀원분들을 만났으니 열심히 해볼게요!!🍀🍀<br/>
+        </p>
+
+    </div>
+</div>
+
+
+<div id="addtest">
+    <br/>
+    <h1 style="background-color : beige "> &nbsp; 👀 저의<span
+            style="font-size: 65px; text-decoration: underline">TMI</span>가 궁금하신가요?</h1>
+    <br/>
+</div>
+
+<div class="container1" style="position: relative;">
+
+    <div class="card text-white" style="background-color: #1DDB16; float: left;">
+        <div class="card-header" style="color:black; font-size: 20px;"><b>👻 Hobby</b></div>
+        <div class="card-body">
+            <h5 class="card-title">산책🏃🏻</h5>
+            <p class="card-text">
+                밤이든 아침이든 산책하는걸<br/>너무너무 좋아해여<br/>
+                제주에서 지내다보니<br/> 가는 거리마다 이쁘고 선선한 바람까지<br/>
+                음악까지 함께한다면 ..정말 ❤️겨울오지마
+            </p>
+        </div>
+    </div>
+
+    <div class="card text-white" style="background-color: #1DDB16; float: left; ">
+        <div class="card-header" style="color:black; font-size: 20px;"><b>👻 장점 </b></div>
+        <div class="card-body">
+            <h5 class="card-title">초긍정 그 자체</h5>
+            <p class="card-text">
+                왜 그러는지 모르겠는데 <br/>
+                정말정말 긍정적이에여 <br/>
+                웃음이 많아서 그런가..<br/>
+                무튼 초 그정정적인 에너지로<br/>
+                아무리 힘든 코딩도 이겨내겠습니다. ❤️
+            </p>
+        </div>
+    </div>
+
+    <div class="card text-white" style=" background-color: #1DDB16; float: left; ">
+        <div class="card-header" style="color:black; font-size: 20px;"><b>👻 협업스타일</b></div>
+        <div class="card-body">
+            <h5 class="card-title">경청 또 경청!</h5>
+            <p class="card-text">
+                평소에도 말하기 보다는 <br/> 듣는걸 좋아하다보니 <br/>
+                팀 프로젝트에서도 듣고 또 듣고<br/>
+                의견을 조율해 나가는거 같아요<br/>
+                여러분들도 한번 경청해보기 해보시는거 어때요?<br/>
+            </p>
+        </div>
+    </div>
+
+    <div class="card text-white " style="background-color:#1DDB16; float: left;">
+        <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA3MjZfMjM0%2FMDAxNjI3MjM4MjYzNDA3.QfyxTUIMYy32qrzuZHub7joytjeEG23KifTINWSPZ44g.V2aaJtXfaSjI1spUt9wLsytnB2IVUwGl5BLuuvOQm-kg.JPEG.sck03247%2FIMG%25A3%25DF20210720%25A3%25DF210115%25A3%25DF923.jpg&type=sc960_832"
+             style="height:300px; width:100%;">
+    </div>
+</div>
+
+<h2 style="padding-left: 30px; background-color: #FFE1E1">💚 강익 대원에게 방명록 남기기!</h2>
+
+<div class="mypost">
+    <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="addon-wrapping">💚</span>
+        <input id="name" type="text" class="form-control" placeholder="작성자" aria-label="Username"
+               aria-describedby="addon-wrapping">
+    </div>
+    <div class="form-floating">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="comment"
+                              style="height: 100px"></textarea>
+        <label for="floatingTextarea2">댓글</label>
+    </div>
+    <div class="mybtn">
+        <button id="post" onclick="save_comment()" type="button"
+                style="background-color: white; border: 1px solid black">방명록 남기기
+        </button>
+    </div>
+</div>
+
+
+<div class="mycards" id="comment-list">
+</div>
+
+</body>
+</html>
