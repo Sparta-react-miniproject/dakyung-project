@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+    <title> Power Rangers</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+
+        #profile {
+            display: flex;
+            flex-direction: row;
+            margin: 10px;
+            border-radius: 10px;
+            background-color: #8D72E1;
+        }
+
+        #image > img {
+            width: 95%;
+            max-width: 300px;
+            border-radius: 10px;
+            margin:30px
+        }
+
+        #introduce {
+            border: 1px solid black;
+            margin:30px;
+            width:80%;
+            background-color: white;
+            padding-top:30px;
+            padding-left: 20px;
+        }
+
+        .mypost {
+            width: 99%;
+            margin: 20px 10px 20px 10px;
+            box-shadow: 0px 0px 3px 0px black;
+            padding: 20px;
+
+        }
+
+        .mypost > button {
+            margin-top: 15px;
+        }
+
+        #likebutton{
+            border-radius: 10px;
+            color:black;
+            font-weight: bold;
+            height:30px;
+            position: relative;
+            bottom:5px;
+            left:10px;
+            background-color:#8D72E1;
+            line-height: 20px;
+        }
+
+        #comment-list {
+            width: 95%;
+            max-width: 500px;
+            margin: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        #comment-list > .card {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        #nav {
+            display: flex;
+            flex-direction: row;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            background-color: #8D72E1;
+        }
+
+        .navbar-brand {
+            color: black;
+        }
+
+        .container1{
+           display: flex;
+          flex-direction: row;
+          align-items: center;
+          width:100%;
+          padding:10px;
+        }
+
+        .card{
+          width:400px;
+          margin: 20px;
+          height:300px;
+          border:1px solid black;
+        }
+
+        .card-title{
+          color:black;
+          font-size: 23px;
+          font-weight: bold;
+          text-decoration: underline;
+        }
+
+        .card-text{
+          font-size: 18px;
+        }
+
+
+
+
+    </style>
+
+    <script>
+        function save_comment() {
+
+        }
+
+        function plus_like() {
+
+        }
+
+
+    </script>
+</head>
+
+<body>
+
+    <div id="nav">
+        <nav class="navbar bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">파워레인저 소개</a>
+            </div>
+        </nav>
+        <nav class="navbar bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">최영진 대원</a>
+            </div>
+        </nav>
+        <nav class="navbar bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">손강익 대원</a>
+            </div>
+        </nav>
+        <nav class="navbar bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">홍다경 대원</a>
+            </div>
+        </nav>
+        <nav class="navbar bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">홍희진 대원</a>
+            </div>
+        </nav>
+    </div>
+
+    <div id="profile">
+        <div id="image">
+            <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FTaBkx%2FbtrP5Df1YjK%2FdVeTA98LuzsMydxJMi0qRk%2Fimg.png"" class="img-thumbnail">
+        </div>
+        <div id="introduce" style='line-height:200%'>
+            <h1 style="display: inline">홍다경 대원</h1>
+             <div id="likediv" style="display: inline">
+                <span id="like" style="font-size: 30px"> 💜+1 </span>
+                <button type="button" onclick="plus_like()" id="likebutton">좋아요</button>
+            </div>
+
+
+            <h3>🔎 MBTI : <span Style="background-color: #FFE1E1; font-size: 25px"> 대담한 통솔자(ENTJ) </span></h3>
+            <h5>🔎 프로젝트 역할: <span Style="background-color: #FFE1E1; font-size: 23px"><b> 백엔드(방명록 등록/삭제) </b></span></h5>
+            <h5>🔎 프로젝트 소감: 설렘 반 두려움 반이었던 첫 프로젝트! </h5>
+
+            <p style="font-size: 16px">
+                첫 시작이 중요하다고 생각하는데 <br/>
+                좋은 팀원분들을 만나 재밌게 프로젝트를 진행할 수 있었습니다😘<br/>
+                웹개발 종합반을 열심히 들은게 정말 도움이 컸던 것 같아요<br/>
+                역시 개발은 노력한만큼 돌아오는 것 같아요<br/>
+                날마다 개발과 더 찐하게 친해져볼거에요 😍
+            </p>
+        </div>
+    </div>
+
+
+    <div id="addtest">
+      <br/>
+      <h1> &nbsp; 💜 저의<span style="font-size: 65px; text-decoration: underline">TMI</span>가 궁금하신가요?</h1>
+      <br/>
+    </div>
+
+    <div class="container1" style="position: relative;">
+
+          <div class="card text-white" style="background-color:#B983FF; float: left;">
+            <div class="card-header" style="color:black; font-size: 20px;"><b>👻 Hobby</b></div>
+            <div class="card-body">
+              <h5 class="card-title">네일아트</h5>
+              <p class="card-text">
+                저는 쉬는 날엔 집에서 네일아트<br/>하는 것을 좋아해요! <br/>
+                좋아하는 음악을 틀어놓고,<br/> 손톱에 좋아하는 아트를 할때면 <br/>
+                시간이 순삭되는 네일 마법 ❤️
+              </p>
+            </div>
+          </div>
+
+          <div class="card text-white" style="background-color: #B983FF; float: left; ">
+            <div class="card-header" style="color:black; font-size: 20px;"><b>👻 장점 </b></div>
+            <div class="card-body">
+              <h5 class="card-title">행복한 쿼카</h5>
+              <p class="card-text">
+                태생부터가 긍정에너지 뿜뿜! <br/>
+                작은 일에도 행복을 잘 느끼는<br/>
+                행복 역치가 낮은 사람이에요 😀<br/>
+                주변에너지를 환하게 밝히는<br/>
+                환한 좋은 에너지를 <br/> 여러분들에게도 드릴게요 ❤️
+              </p>
+            </div>
+          </div>
+
+           <div class="card text-white" style=" background-color: #B983FF; float: left; ">
+            <div class="card-header" style="color:black; font-size: 20px;"><b>👻 협업스타일</b></div>
+            <div class="card-body">
+              <h5 class="card-title">다를 수 있지!</h5>
+              <p class="card-text">
+                다른 사람이 볼땐 <br/>제가 이방인일거라 생각해요<br/>
+                자라온 환경이 모두 다르니 <br/>
+                나의 좋은 모습을 잃지 않으면서 <br/>
+                다른 사람의 모습을 존중해요<br/>
+                우리는 모두 소중한 사람! :)
+              </p>
+              </div>
+            </div>
+
+            <div class="card text-white " style="background-color: #B983FF; float: left;">
+              <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA3MjZfMjM0%2FMDAxNjI3MjM4MjYzNDA3.QfyxTUIMYy32qrzuZHub7joytjeEG23KifTINWSPZ44g.V2aaJtXfaSjI1spUt9wLsytnB2IVUwGl5BLuuvOQm-kg.JPEG.sck03247%2FIMG%25A3%25DF20210720%25A3%25DF210115%25A3%25DF923.jpg&type=sc960_832" style="height:300px; width:100%;">
+            </div>
+    </div>
+
+
+
+    <div class="mypost">
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="name" placeholder="url">
+            <label for="floatingInput">닉네임</label>
+        </div>
+
+        <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" id="comment"
+          style="height: 100px"></textarea>
+            <label for="floatingTextarea2">응원댓글</label>
+        </div>
+
+        <button onclick="save_comment()" type="button" class="btn btn-outline-secondary">응원 남기기</button>
+    </div>
+
+    <div class="mycards" id="comment-list">
+    </div>
+
+</body>
+</html>
