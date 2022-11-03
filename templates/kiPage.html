@@ -243,7 +243,7 @@
         function plus_like() {
             $.ajax({
                 type: "POST",
-                url: "/likes1",
+                url: "/likes2,
                 data: {},
                 success: function (response) {
                     alert(response['msg'])
@@ -255,7 +255,7 @@
         function show_like() {
             $.ajax({
                 type: "GET",
-                url: "/likes1",
+                url: "/likes2,
                 data: {},
                 success: function (response) {
                     let rows = response['likes']
@@ -409,13 +409,6 @@
 
 
 <div class="mycards" id="comment-list">
-</div>
-
-</body>
-</html>
-
-
-    </div>
 </div>
 
 </body>
