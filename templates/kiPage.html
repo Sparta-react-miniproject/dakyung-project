@@ -160,7 +160,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: '/savecomment5',
+                url: '/savecomment3',
                 data: {'nickname_give': nickname, 'comment_give' : comment},
                 success: function (response) {
                     alert(response['msg'])
@@ -205,7 +205,7 @@
                                                 <p style="display: none">${membernum}</p>
                                                 <p>${comment}</p>
                                                 <footer class="blockquote-footer">${name}</footer>
-                                                <button type="button" onclick="delete_comment(${membernum})" style="background-color: black; color:white; border: none">삭제</button>
+                                                <button type="button" onclick="delete_comment(${membernum})" style="background-color:#1DDB16; color:white; border: none">삭제</button>
                                             </blockquote>
                                         </div>
                                     </div>`
